@@ -1,5 +1,14 @@
 #MONGOS
 
+router:
+  build: ./mongo-node
+  net: mongonet
+  hostname: mdb-router
+  container_name: mdb-router
+  command: sh /root/run.sh
+  environment:
+    SHARD_ENV: 'router'
+
 mdb-s1r1:
   build: ./mongo-node
   net: mongonet
@@ -34,3 +43,73 @@ mdb-s1r3:
     SHARD_ENV: 'replicaset'
     STATE: 'secondary'
     RS_NAME: 'rs1'
+
+mdb-s2r1:
+  build: ./mongo-node
+  net: mongonet
+  hostname: mdb-s2r1
+  container_name: mdb-s2r1
+  command: sh /root/run.sh
+  environment:
+    SHARD_ENV: 'replicaset'
+    STATE: 'primary'
+    S1: 'mdb-s2r2'
+    S2: 'mdb-s2r3'
+    RS_NAME: 'rs2'
+
+mdb-s2r2:
+  build: ./mongo-node
+  net: mongonet
+  hostname: mdb-s2r2
+  container_name: mdb-s2r2
+  command: sh /root/run.sh
+  environment:
+    SHARD_ENV: 'replicaset'
+    STATE: 'secondary'
+    RS_NAME: 'rs2'
+
+mdb-s2r3:
+  build: ./mongo-node
+  net: mongonet
+  hostname: mdb-s2r3
+  container_name: mdb-s2r3
+  command: sh /root/run.sh
+  environment:
+    SHARD_ENV: 'replicaset'
+    STATE: 'secondary'
+    RS_NAME: 'rs2'
+
+mdb-cs1:
+  build: ./mongo-node
+  net: mongonet
+  hostname: mdb-cs1
+  container_name: mdb-cs1
+  command: sh /root/run.sh
+  environment:
+    SHARD_ENV: 'configset'
+    STATE: 'primary'
+    S1: 'mdb-cs2'
+    S2: 'mdb-cs3'
+    RS_NAME: 'cs'
+
+mdb-cs2:
+  build: ./mongo-node
+  net: mongonet
+  hostname: mdb-cs2
+  container_name: mdb-cs2
+  command: sh /root/run.sh
+  environment:
+    SHARD_ENV: 'configset'
+    STATE: 'secondary'
+    RS_NAME: 'cs'
+
+mdb-cs3:
+  build: ./mongo-node
+  net: mongonet
+  hostname: mdb-cs3
+  container_name: mdb-cs3
+  command: sh /root/run.sh
+  environment:
+    SHARD_ENV: 'configset'
+    STATE: 'secondary'
+    RS_NAME: 'cs'
