@@ -1,0 +1,36 @@
+#MONGOS
+
+mdb-s1r1:
+  build: ./mongo-node
+  net: mongonet
+  hostname: mdb-s1r1
+  container_name: mdb-s1r1
+  command: sh /root/run.sh
+  environment:
+    SHARD_ENV: 'replicaset'
+    STATE: 'primary'
+    S1: 'mdb-s1r2'
+    S2: 'mdb-s1r3'
+    RS_NAME: 'rs1'
+
+mdb-s1r2:
+  build: ./mongo-node
+  net: mongonet
+  hostname: mdb-s1r2
+  container_name: mdb-s1r2
+  command: sh /root/run.sh
+  environment:
+    SHARD_ENV: 'replicaset'
+    STATE: 'secondary'
+    RS_NAME: 'rs1'
+
+mdb-s1r3:
+  build: ./mongo-node
+  net: mongonet
+  hostname: mdb-s1r3
+  container_name: mdb-s1r3
+  command: sh /root/run.sh
+  environment:
+    SHARD_ENV: 'replicaset'
+    STATE: 'secondary'
+    RS_NAME: 'rs1'
