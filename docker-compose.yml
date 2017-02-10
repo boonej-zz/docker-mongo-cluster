@@ -1,7 +1,7 @@
 #MONGOS
 
 router:
-  build: ./mongo-node
+  build: ./mongo-base
   net: mongonet
   hostname: mdb-router
   container_name: mdb-router
@@ -10,7 +10,7 @@ router:
     SHARD_ENV: 'router'
 
 mdb-s1r1:
-  build: ./mongo-node
+  build: ./mongo-base
   net: mongonet
   hostname: mdb-s1r1
   container_name: mdb-s1r1
@@ -23,7 +23,7 @@ mdb-s1r1:
     RS_NAME: 'rs1'
 
 mdb-s1r2:
-  build: ./mongo-node
+  build: ./mongo-base
   net: mongonet
   hostname: mdb-s1r2
   container_name: mdb-s1r2
@@ -34,7 +34,7 @@ mdb-s1r2:
     RS_NAME: 'rs1'
 
 mdb-s1r3:
-  build: ./mongo-node
+  build: ./mongo-base
   net: mongonet
   hostname: mdb-s1r3
   container_name: mdb-s1r3
@@ -45,7 +45,7 @@ mdb-s1r3:
     RS_NAME: 'rs1'
 
 mdb-s2r1:
-  build: ./mongo-node
+  build: ./mongo-base
   net: mongonet
   hostname: mdb-s2r1
   container_name: mdb-s2r1
@@ -58,7 +58,7 @@ mdb-s2r1:
     RS_NAME: 'rs2'
 
 mdb-s2r2:
-  build: ./mongo-node
+  build: ./mongo-base
   net: mongonet
   hostname: mdb-s2r2
   container_name: mdb-s2r2
@@ -69,7 +69,7 @@ mdb-s2r2:
     RS_NAME: 'rs2'
 
 mdb-s2r3:
-  build: ./mongo-node
+  build: ./mongo-base
   net: mongonet
   hostname: mdb-s2r3
   container_name: mdb-s2r3
@@ -80,7 +80,7 @@ mdb-s2r3:
     RS_NAME: 'rs2'
 
 mdb-cs1:
-  build: ./mongo-node
+  build: ./mongo-base
   net: mongonet
   hostname: mdb-cs1
   container_name: mdb-cs1
@@ -93,7 +93,7 @@ mdb-cs1:
     RS_NAME: 'cs'
 
 mdb-cs2:
-  build: ./mongo-node
+  build: ./mongo-base
   net: mongonet
   hostname: mdb-cs2
   container_name: mdb-cs2
@@ -104,7 +104,7 @@ mdb-cs2:
     RS_NAME: 'cs'
 
 mdb-cs3:
-  build: ./mongo-node
+  build: ./mongo-base
   net: mongonet
   hostname: mdb-cs3
   container_name: mdb-cs3

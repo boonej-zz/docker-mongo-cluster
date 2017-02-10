@@ -10,7 +10,14 @@ RUN echo \
 RUN apt-get -y update && apt-get install -y \
   mongodb-org
 RUN mkdir -p /data/db
+
+ADD run.sh /root/run.sh
+RUN mkdir -p /var/log/mongod
+RUN mkdir -p /data/
+ADD data /data/restore
+
 EXPOSE 27017
 EXPOSE 27018
 EXPOSE 27019
-CMD ["mongod"]  
+
+CMD ["/root/run.sh"]
